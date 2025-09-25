@@ -24,12 +24,19 @@
     <option value="pressure">Pressure Washing</option>
     <option value="gutter">Gutter Cleaning</option>
     <option value="painting">Painting</option>
+    <option value="gravel">Gravel Resurfacing</option>
+    <option value="other">Other (please describe below)</option>
   </select>
   <br><br>
 
   <!-- Size Input -->
   <label id="sizeLabel">Enter Size (sq ft or linear ft):</label>
   <input type="number" id="size" name="size" required>
+  <br><br>
+
+  <!-- Description Box -->
+  <label for="description">Job Description / Notes:</label><br>
+  <textarea id="description" name="description" rows="4" cols="50" placeholder="Describe the project details here..."></textarea>
   <br><br>
 
   <!-- Hidden fields -->
@@ -62,12 +69,20 @@ function calculate() {
       cost = size * 5.00; // $5.00 per sq ft
       document.getElementById("sizeLabel").innerText = "Enter Size (sq ft):";
       break;
+    case "gravel":
+      cost = size * 2.00; // $2.00 per sq ft
+      document.getElementById("sizeLabel").innerText = "Enter Size (sq ft):";
+      break;
+    case "other":
+      cost = 0; // No auto pricing for "Other"
+      document.getElementById("sizeLabel").innerText = "Enter Size (if applicable):";
+      break;
     default:
       cost = 0;
   }
 
   // Save estimate privately in hidden field
-  document.getElementById("estimate").value = "$" + cost.toFixed(2);
+  document.getElementById("estimate").value = cost > 0 ? "$" + cost.toFixed(2) : "Manual Quote Needed";
 }
 </script>
 
