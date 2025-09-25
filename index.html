@@ -1,4 +1,4 @@
-<form id="jobForm" action="https://formspree.io/f/mvgwowed" method="POST">
+<form id="jobForm" action="https://formspree.io/f/mvbgwowed" method="POST">
   <!-- Customer Info -->
   <label for="firstName">First Name:</label>
   <input type="text" id="firstName" name="firstName" required>
@@ -54,54 +54,50 @@ function calculate() {
 
   switch(service) {
     case "asphalt":
-      cost = size * 0.30; 
+      cost = size * 0.30; // $0.30 per sq ft
       document.getElementById("sizeLabel").innerText = "Enter Size (sq ft):";
       break;
     case "pressure":
-      cost = size * 0.50; 
+      cost = size * 0.50; // $0.50 per sq ft
       document.getElementById("sizeLabel").innerText = "Enter Size (sq ft):";
       break;
     case "gutter":
-      cost = size * 2.00; 
+      cost = size * 2.00; // $2.00 per linear ft
       document.getElementById("sizeLabel").innerText = "Enter Size (linear ft):";
       break;
     case "painting":
-      cost = size * 5.00; 
+      cost = size * 5.00; // $5.00 per sq ft
       document.getElementById("sizeLabel").innerText = "Enter Size (sq ft):";
       break;
     case "gravel":
-      cost = size * 2.00; 
+      cost = size * 2.00; // $2.00 per sq ft
       document.getElementById("sizeLabel").innerText = "Enter Size (sq ft):";
       break;
     case "other":
-      cost = 0; 
+      cost = 0; // No auto pricing for "Other"
       document.getElementById("sizeLabel").innerText = "Enter Size (if applicable):";
       break;
     default:
       cost = 0;
   }
 
+  // Save estimate privately in hidden field
   document.getElementById("estimate").value = cost > 0 ? "$" + cost.toFixed(2) : "Manual Quote Needed";
 }
 </script>
 
 <style>
-/* Prevent unwanted scrollbars */
-body, html {
+/* Prevent scrollbars on mobile */
+html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden; /* block horizontal scrolling */
 }
 
-/* Make form adapt on small screens */
-form {
-  max-width: 100%;
-  box-sizing: border-box;
-  padding: 10px;
-}
-
+/* Keep inputs inside screen width */
 input, select, textarea, button {
   max-width: 100%;
   box-sizing: border-box;
 }
 </style>
+
