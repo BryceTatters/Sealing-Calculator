@@ -2,19 +2,15 @@
   <!-- Customer Info -->
   <label for="firstName">First Name:</label>
   <input type="text" id="firstName" name="firstName" required>
-  <br><br>
 
   <label for="lastName">Last Name:</label>
   <input type="text" id="lastName" name="lastName" required>
-  <br><br>
 
   <label for="phone">Phone Number:</label>
   <input type="tel" id="phone" name="phone" required placeholder="123-456-7890">
-  <br><br>
 
   <label for="email">Email Address:</label>
   <input type="email" id="email" name="email" required>
-  <br><br>
 
   <!-- Service Selection -->
   <label for="service">Choose a Service:</label>
@@ -27,17 +23,14 @@
     <option value="gravel">Gravel Resurfacing</option>
     <option value="other">Other (please describe below)</option>
   </select>
-  <br><br>
 
   <!-- Size Input -->
   <label id="sizeLabel">Enter Size (sq ft or linear ft):</label>
   <input type="number" id="size" name="size" required>
-  <br><br>
 
   <!-- Description Box -->
-  <label for="description">Job Description / Notes:</label><br>
-  <textarea id="description" name="description" rows="4" cols="50" placeholder="Describe the project details here..."></textarea>
-  <br><br>
+  <label for="description">Job Description / Notes:</label>
+  <textarea id="description" name="description" rows="4" placeholder="Describe the project details here..."></textarea>
 
   <!-- Hidden fields -->
   <input type="hidden" id="estimate" name="estimate">
@@ -54,36 +47,87 @@ function calculate() {
 
   switch(service) {
     case "asphalt":
-      cost = size * 0.30; // $0.30 per sq ft
+      cost = size * 0.30; 
       document.getElementById("sizeLabel").innerText = "Enter Size (sq ft):";
       break;
     case "pressure":
-      cost = size * 0.50; // $0.50 per sq ft
+      cost = size * 0.50; 
       document.getElementById("sizeLabel").innerText = "Enter Size (sq ft):";
       break;
     case "gutter":
-      cost = size * 2.00; // $2.00 per linear ft
+      cost = size * 2.00; 
       document.getElementById("sizeLabel").innerText = "Enter Size (linear ft):";
       break;
     case "painting":
-      cost = size * 5.00; // $5.00 per sq ft
+      cost = size * 5.00; 
       document.getElementById("sizeLabel").innerText = "Enter Size (sq ft):";
       break;
     case "gravel":
-      cost = size * 2.00; // $2.00 per sq ft
+      cost = size * 2.00; 
       document.getElementById("sizeLabel").innerText = "Enter Size (sq ft):";
       break;
     case "other":
-      cost = 0; // No auto pricing for "Other"
+      cost = 0; 
       document.getElementById("sizeLabel").innerText = "Enter Size (if applicable):";
       break;
     default:
       cost = 0;
   }
 
-  // Save estimate privately in hidden field
   document.getElementById("estimate").value = cost > 0 ? "$" + cost.toFixed(2) : "Manual Quote Needed";
 }
 </script>
 
+<style>
+/* Reset & mobile-friendly styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* prevent horizontal scroll */
+}
 
+form {
+  max-width: 600px;
+  margin: auto;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+label {
+  display: block;
+  margin-top: 12px;
+  font-weight: bold;
+}
+
+input, select, textarea, button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  form {
+    padding: 10px;
+  }
+  input, select, textarea, button {
+    font-size: 14px;
+  }
+}
+</style>
