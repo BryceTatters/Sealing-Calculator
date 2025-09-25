@@ -2,15 +2,19 @@
   <!-- Customer Info -->
   <label for="firstName">First Name:</label>
   <input type="text" id="firstName" name="firstName" required>
+  <br><br>
 
   <label for="lastName">Last Name:</label>
   <input type="text" id="lastName" name="lastName" required>
+  <br><br>
 
   <label for="phone">Phone Number:</label>
   <input type="tel" id="phone" name="phone" required placeholder="123-456-7890">
+  <br><br>
 
   <label for="email">Email Address:</label>
   <input type="email" id="email" name="email" required>
+  <br><br>
 
   <!-- Service Selection -->
   <label for="service">Choose a Service:</label>
@@ -23,14 +27,17 @@
     <option value="gravel">Gravel Resurfacing</option>
     <option value="other">Other (please describe below)</option>
   </select>
+  <br><br>
 
   <!-- Size Input -->
   <label id="sizeLabel">Enter Size (sq ft or linear ft):</label>
   <input type="number" id="size" name="size" required>
+  <br><br>
 
   <!-- Description Box -->
-  <label for="description">Job Description / Notes:</label>
-  <textarea id="description" name="description" rows="4" placeholder="Describe the project details here..."></textarea>
+  <label for="description">Job Description / Notes:</label><br>
+  <textarea id="description" name="description" rows="4" cols="50" placeholder="Describe the project details here..."></textarea>
+  <br><br>
 
   <!-- Hidden fields -->
   <input type="hidden" id="estimate" name="estimate">
@@ -79,55 +86,22 @@ function calculate() {
 </script>
 
 <style>
-/* Reset & mobile-friendly styles */
+/* Prevent unwanted scrollbars */
 body, html {
   margin: 0;
   padding: 0;
-  overflow-x: hidden; /* prevent horizontal scroll */
+  overflow-x: hidden; /* block horizontal scrolling */
 }
 
+/* Make form adapt on small screens */
 form {
-  max-width: 600px;
-  margin: auto;
-  padding: 15px;
+  max-width: 100%;
   box-sizing: border-box;
-}
-
-label {
-  display: block;
-  margin-top: 12px;
-  font-weight: bold;
+  padding: 10px;
 }
 
 input, select, textarea, button {
-  width: 100%;
-  padding: 10px;
-  margin-top: 6px;
-  margin-bottom: 12px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  max-width: 100%;
   box-sizing: border-box;
-  font-size: 16px;
-}
-
-button {
-  background-color: #333;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #555;
-}
-
-/* Mobile adjustments */
-@media (max-width: 600px) {
-  form {
-    padding: 10px;
-  }
-  input, select, textarea, button {
-    font-size: 14px;
-  }
 }
 </style>
