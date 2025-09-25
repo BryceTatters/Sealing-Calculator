@@ -1,202 +1,74 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Sealcoating Estimate Request</title>
+<form id="jobForm" action="https://formspree.io/f/mvgwowed" method="POST">
+  <!-- Customer Info -->
+  <label for="firstName">First Name:</label>
+  <input type="text" id="firstName" name="firstName" required>
+  <br><br>
 
-<style>
-  /* =============================
-     THEME VARIABLES — EASY EDITS
-     ============================= */
-html, body {
-  margin: 0;
-  padding: 0;
-  overflow: hidden; /* hides the scrollbar on the GitHub page */
-}
+  <label for="lastName">Last Name:</label>
+  <input type="text" id="lastName" name="lastName" required>
+  <br><br>
 
-  
-  :root{
-    --font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  <label for="phone">Phone Number:</label>
+  <input type="tel" id="phone" name="phone" required placeholder="123-456-7890">
+  <br><br>
 
-    --bg: #eeeeee;              /* page background */
-    --card-bg: #ffffff;          /* form card background */
-    --text: #111111;             /* primary text */
-    --muted: #666666;            /* secondary text */
-    --accent: #2e62ff;           /* buttons/focus */
-    --accent-contrast: #ffffff;  /* button text */
-    --border: #dddddd;           /* borders */
-    --error: #b00020;            /* error text/border */
+  <label for="email">Email Address:</label>
+  <input type="email" id="email" name="email" required>
+  <br><br>
 
-    --radius: 12px;              /* rounded corners */
-    --card-max-w: 520px;         /* max card width */
-    --input-padding: 12px;       /* input padding */
-    --input-font-size: 16px;     /* input text size */
-    --heading-size: 26px;        /* h1 size */
-    --button-padding: 12px 16px; /* button padding */
-    --gap: 14px;                 /* vertical spacing */
-  }
+  <!-- Service Selection -->
+  <label for="service">Choose a Service:</label>
+  <select id="service" name="service" required>
+    <option value="">--Select a Service--</option>
+    <option value="asphalt">Asphalt Sealing</option>
+    <option value="pressure">Pressure Washing</option>
+    <option value="gutter">Gutter Cleaning</option>
+    <option value="painting">Painting</option>
+  </select>
+  <br><br>
 
-  /* ===== Layout ===== */
-  body{
-    margin:0; padding:24px; min-height:100vh;
-    display:flex; align-items:center; justify-content:center;
-    background: var(--bg); color: var(--text);
-    font-family: var(--font-family);
-  }
-  .card{
-    width:100%; max-width:var(--card-max-w);
-    background:var(--card-bg);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    padding:24px;
-    box-shadow:0 8px 20px rgba(0,0,0,.05);
-  }
-  h1{
-    font-size:var(--heading-size);
-    margin:0 0 var(--gap);
-    text-align:center;
-  }
+  <!-- Size Input -->
+  <label id="sizeLabel">Enter Size (sq ft or linear ft):</label>
+  <input type="number" id="size" name="size" required>
+  <br><br>
 
-  /* ===== Form ===== */
-  form{ display:grid; gap:var(--gap); }
-  label{ font-weight:600; display:block; margin-bottom:6px; }
-  input{
-    width:100%; box-sizing:border-box;
-    padding:var(--input-padding);
-    font-size:var(--input-font-size);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    background:#fff;
-  }
-  input:focus{
-    outline:none;
-    border-color:var(--accent);
-    box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent);
-  }
-  .actions{ display:grid; gap:10px; }
-  button{
-    padding:var(--button-padding);
-    font-weight:700; font-size:1rem;
-    border:0; border-radius:var(--radius);
-    background:var(--accent); color:var(--accent-contrast);
-    cursor:pointer;
-  }
+  <!-- Hidden fields -->
+  <input type="hidden" id="estimate" name="estimate">
+  <input type="hidden" name="_redirect" value="https://yourwebsite.com/thank-you">
 
-  /* ===== Messages ===== */
-  .msg{ display:none; padding:12px; border-radius:var(--radius); }
-  .msg.ok{
-    display:none; background:#e9f5ff; border:1px solid #bcdfff; color:#0b3a73;
-    text-align:center; font-weight:600;
-  }
-  .msg.err{
-    display:none; background:#ffe9ec; border:1px solid #ffc2cc; color:var(--error);
-    text-align:center; font-weight:600;
-  }
-  .fine{ color:var(--muted); text-align:center; margin-top:8px; }
-  .hp{ position:absolute; left:-5000px; top:-5000px; } /* honeypot */
-</style>
-</head>
-<body>
-  <div class="card">
-    <h1>Request Your Driveway Estimate</h1>
-
-    <!-- Success / Error banners -->
-    <div id="ok" class="msg ok">thankyou, we will contact you within 24 hours with your estimate</div>
-    <div id="err" class="msg err">Sorry—something went wrong. Please try again.</div>
-
-    <form id="estimateForm" action="https://formspree.io/f/mvgwowed" method="POST" novalidate>
-      <!-- Visible fields -->
-      <div>
-        <label for="name">Full Name</label>
-        <input id="name" name="Name" type="text" placeholder="Jane Doe" required />
-      </div>
-
-      <div>
-        <label for="sqft">Total Square Feet</label>
-        <input id="sqft" name="Square Feet" type="number" min="0" step="1" placeholder="e.g., 1200" required />
-      </div>
-
-      <div>
-        <label for="phone">Phone Number</label>
-        <input id="phone" name="Phone" type="tel" placeholder="(555) 123-4567" required />
-      </div>
-
-      <!-- Hidden fields auto-filled before submit -->
-      <input type="hidden" id="rateField"  name="Rate per sq ft"      value="$0.30" />
-      <input type="hidden" id="totalField" name="Estimated Total"      />
-      <input type="hidden" id="subjField"  name="_subject"             value="New Sealcoating Estimate Request" />
-
-      <!-- Honeypot (anti-spam) -->
-      <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off"/>
-
-      <div class="actions">
-        <button type="submit">Submit Request</button>
-      </div>
-
-      <p class="fine">We’ll review your request and confirm the final quote after a quick site check.</p>
-    </form>
-  </div>
+  <button type="submit" onclick="calculate()">Submit</button>
+</form>
 
 <script>
-  // ----- Configuration -----
-  const RATE = 0.30; // $0.30 per sq ft
+function calculate() {
+  let service = document.getElementById("service").value;
+  let size = parseFloat(document.getElementById("size").value) || 0;
+  let cost = 0;
 
-  // Helpers
-  const $ = id => document.getElementById(id);
-  const money = n => n.toLocaleString(undefined, { style: 'currency', currency: 'USD' });
-
-  // Compute estimate (not displayed to customer)
-  function computeEstimate() {
-    const sqft = Math.max(0, Number($('sqft').value || 0));
-    return { sqft, total: sqft * RATE };
+  switch(service) {
+    case "asphalt":
+      cost = size * 0.30; // $0.30 per sq ft
+      document.getElementById("sizeLabel").innerText = "Enter Size (sq ft):";
+      break;
+    case "pressure":
+      cost = size * 0.50; // $0.50 per sq ft
+      document.getElementById("sizeLabel").innerText = "Enter Size (sq ft):";
+      break;
+    case "gutter":
+      cost = size * 2.00; // $2.00 per linear ft
+      document.getElementById("sizeLabel").innerText = "Enter Size (linear ft):";
+      break;
+    case "painting":
+      cost = size * 5.00; // $5.00 per sq ft
+      document.getElementById("sizeLabel").innerText = "Enter Size (sq ft):";
+      break;
+    default:
+      cost = 0;
   }
 
-  // Handle submit: compute estimate, fill hidden fields, POST to Formspree
-  const form = $('estimateForm');
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    // Basic front-end validation for required fields
-    const nameOk  = $('name').value.trim().length > 1;
-    const sqftOk  = Number($('sqft').value) > 0;
-    const phoneOk = $('phone').value.trim().length > 6;
-
-    if (!nameOk || !sqftOk || !phoneOk) {
-      $('err').style.display = 'block';
-      $('err').textContent = 'Please complete all fields with valid information.';
-      return;
-    }
-
-    const { sqft, total } = computeEstimate();
-    $('totalField').value = money(total);
-    $('subjField').value  = `Sealcoating Estimate Request: ${sqft} sq ft @ $${RATE.toFixed(2)}/sq ft`;
-
-    // Hide messages
-    $('ok').style.display = 'none';
-    $('err').style.display = 'none';
-
-    try {
-      const res = await fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if (res.ok) {
-        // Success: hide form, show thank-you
-        form.reset();
-        form.style.display = 'none';
-        $('ok').style.display = 'block';
-      } else {
-        $('err').style.display = 'block';
-      }
-    } catch (err) {
-      $('err').style.display = 'block';
-    }
-  });
+  // Save estimate privately in hidden field
+  document.getElementById("estimate").value = "$" + cost.toFixed(2);
+}
 </script>
-</body>
-</html>
 
 
